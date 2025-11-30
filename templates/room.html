@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Цвет стен</th>
+            <th>Эмблема</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                {% if sex == 'male' %}
+                    Синий
+                {% elif sex == 'female' %}
+                    Розовый
+                {% else %}
+                    Серый
+                {% endif %}
+            </td>
+            <td>
+                {% if age < 21 %}
+                    <img src="{{ url_for('static', filename='images/emblem_young.png') }}" alt="Эмблема молодого">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/emblem_adult.png') }}" alt="Эмблема взрослого">
+                {% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

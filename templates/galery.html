@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+
+{% if gallery_images %}
+    <div id="galleryCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for img in gallery_images %}
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index0 }}" class="{% if loop.first %}active{% endif %}" aria-current="true" aria-label="Slide {{ loop.index }}"></button>
+            {% endfor %}
+        </div>
+        <div class="carousel-inner">
+            {% for img in gallery_images %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <img src="{{ img }}" class="d-block w-100" alt="Марсианский пейзаж">
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+{% else %}
+    <p class="text-muted">Галерея пуста. Загрузите первое изображение!</p>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" class="mb-4">
+    <div class="mb-3">
+        <label for="new_image" class="form-label">Загрузить новое изображение</label>
+        <input class="form-control" type="file" name="new_image" accept="image/*" required>
+    </div>
+    <button type="submit" class="btn btn-success">Добавить в галерею</button>
+</form>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} mt-3">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+{% endblock %}

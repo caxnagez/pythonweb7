@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="{{ url_for('index') }}">Главная</a></li>
+        <li class="list-group-item"><a href="{{ url_for('list_prof', list_type='ul') }}">Список профессий (маркированный)</a></li>
+        <li class="list-group-item"><a href="{{ url_for('list_prof', list_type='ol') }}">Список профессий (нумерованный)</a></li>
+        <li class="list-group-item"><a href="{{ url_for('distribution') }}">Размещение</a></li>
+        <li class="list-group-item"><a href="{{ url_for('member_by_number', number=1) }}">Член экипажа 1</a></li>
+        <li class="list-group-item"><a href="{{ url_for('member_by_number', number=5) }}">Член экипажа 5</a></li>
+        <li class="list-group-item"><a href="{{ url_for('member_by_number', number=99) }}">Член экипажа (ошибка)</a></li>
+        <li class="list-group-item"><a href="{{ url_for('member_random') }}">Случайный член экипажа</a></li>
+        <li class="list-group-item"><a href="{{ url_for('room', sex='male', age=25) }}">Оформление каюты (мужчина, 25)</a></li>
+        <li class="list-group-item"><a href="{{ url_for('room', sex='female', age=18) }}">Оформление каюты (женщина, 18)</a></li>
+        <li class="list-group-item"><a href="{{ url_for('astronaut_selection') }}">Запись добровольцем</a></li>
+        <li class="list-group-item"><a href="{{ url_for('galery') }}">Галерея</a></li>
+    </ul>
+{% endblock %}

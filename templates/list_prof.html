@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+    {% if list_type == 'ul' %}
+        <ul class="list-group">
+            {% for prof in professions %}
+                <li class="list-group-item">{{ prof }}</li>
+            {% endfor %}
+        </ul>
+    {% elif list_type == 'ol' %}
+        <ol class="list-group list-group-numbered">
+            {% for prof in professions %}
+                <li class="list-group-item">{{ prof }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Неверный параметр списка. Используйте 'ul' или 'ol'.
+        </div>
+    {% endif %}
+{% endblock %}
